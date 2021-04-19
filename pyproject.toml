@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "chow-truss-csv-normalizer"
+version = "0.1.0"
+description = ""
+authors = ["Kenneth Chow <kennethjchow@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pytz = "^2021.1"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.5.6"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
