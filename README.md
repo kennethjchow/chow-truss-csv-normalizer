@@ -60,3 +60,4 @@ A few tradeoffs considered during development are as follows:
 - Environment variables for US/Pacific and US/Eastern to be more easily configurable without having to dig through the code again. 
 - The timestamp seems to be given PST or PDT, but it should be standardized as either/or
 - More log messages tracking the important information necessary for debugging
+- For replacing the non-utf8 characters, it doesn't log that it just modified the data. It should log it for data integrity purposes
