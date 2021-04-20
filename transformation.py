@@ -57,7 +57,7 @@ def format_zip(zip):
     zip_text = str(zip)
     if len(zip_text) > constants.ZIPCODE_LENGTH or not zip_text.isdigit():
         raise ValueError('Invalid ZIP input')
-    return zip_text.zfill(5)
+    return zip_text.zfill(constants.ZIPCODE_LENGTH)
 
 
 def write_to_csv(data, filename='output.csv'):

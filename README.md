@@ -53,6 +53,8 @@ A few tradeoffs considered during development are as follows:
 
 - Comments and doc strings - Usually, I try discuss with the team and other stakeholders about the amount of comments and doc strings needed. I usually air on the side of less comments and focus on code readability without comments, but some people feel different. 
 
+- Constants file - To keep track of the numbers associated with each step of the process, I created a constants file to keep track of them and get rid of the "magic numbers"
+
 ## Future Improvements
 
 
