@@ -20,8 +20,6 @@ def main(path='sample-with-broken-utf8.csv', output_filename='output.csv'):
             continue
     write_to_csv(result, output_filename)
     input_file.close()
-    # close file
-
 
 def format_data(row):
     """
