@@ -3,6 +3,7 @@ from datetime import datetime
 import pytz
 from pytz import reference
 import sys
+from utils import constants
 
 
 def main(path='sample-with-broken-utf8.csv', output_filename='output.csv'):
@@ -56,7 +57,7 @@ def format_data(row):
 
 def format_zip(zip):
     zip_text = str(zip)
-    if len(zip_text) > 5 or not zip_text.isdigit():
+    if len(zip_text) > constants.ZIPCODE_LENGTH or not zip_text.isdigit():
         raise ValueError('Invalid ZIP input')
     return zip_text.zfill(5)
 
@@ -124,13 +125,14 @@ def calculate_duration(time_string):
     """
     split_time = list(map(int, time_string.replace('.', ':').split(':')))
 
-    if len(split_time) != 4: 
+    if len(split_time) != constants.SECTIONS_IN_TIMESTAMP:
         raise ValueError('Time is missing values')
     if not all(isinstance(x, int) for x in split_time):
         raise ValueError('Invalid non-numeric characters in time values')
 
     hours, minutes, seconds, millisecs = split_time
-    total_time = 3600*hours + 60*minutes + seconds + millisecs/1000
+    total_time = constants.SECONDS_IN_HOUR*hours + constants.SECONDS_IN_MINUTES * \
+        minutes + seconds + millisecs/constants.MILLISECONDS_IN_SECONDS
     return total_time
 
 
@@ -138,17 +140,17 @@ def is_input_valid():
     '''
     Checks if the user inputs are valid
     '''
-    if len(sys.argv) != 3: # 3 is used here because it's expecting 3 arguments. Python filename, input file, output file
+    if len(sys.argv) != constants.EXPECTED_NUMBER_OF_ARGUMENTS:
         return False
-    if not sys.argv[1].endswith('.csv') or not sys.argv[2].endswith('.csv'):
+    if not sys.argv[constants.INPUT_VARIABLE_LOCATION].endswith('.csv') or not sys.argv[constants.OUTPUT_VARIABLE_LOCATION].endswith('.csv'):
         return False
     return True
 
 
 if __name__ == '__main__':
     if is_input_valid():
-        input_filename = sys.argv[1] # 1 is input file name
-        output_filename = sys.argv[2]# 2 is output file name
+        input_filename = sys.argv[constants.INPUT_VARIABLE_LOCATION]
+        output_filename = sys.argv[constants.OUTPUT_VARIABLE_LOCATION]
         main(input_filename, output_filename)
     else:
         sys.stderr.write(
