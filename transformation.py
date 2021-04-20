@@ -124,7 +124,7 @@ def calculate_duration(time_string):
     """
     split_time = list(map(int, time_string.replace('.', ':').split(':')))
 
-    if len(split_time) != 4:
+    if len(split_time) != 4: 
         raise ValueError('Time is missing values')
     if not all(isinstance(x, int) for x in split_time):
         raise ValueError('Invalid non-numeric characters in time values')
@@ -138,7 +138,7 @@ def is_input_valid():
     '''
     Checks if the user inputs are valid
     '''
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 3: # 3 is used here because it's expecting 3 arguments. Python filename, input file, output file
         return False
     if not sys.argv[1].endswith('.csv') or not sys.argv[2].endswith('.csv'):
         return False
@@ -147,8 +147,8 @@ def is_input_valid():
 
 if __name__ == '__main__':
     if is_input_valid():
-        input_filename = sys.argv[1]
-        output_filename = sys.argv[2]
+        input_filename = sys.argv[1] # 1 is input file name
+        output_filename = sys.argv[2]# 2 is output file name
         main(input_filename, output_filename)
     else:
         sys.stderr.write(
